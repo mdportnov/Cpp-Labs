@@ -54,7 +54,7 @@ delete_element(Child_Table*, Parent_Table *), show_parent_table(Child_Table*, Pa
 int findByKey(Parent_Table *, int);
 int findByKeyInChild(Child_Table *, int);
 
-int (*ftpr[])(Child_Table*, Parent_Table*)={nullptr, add_parent_element, add_child_element, delete_element, show_parent_table, show_child_table, surprise};
+int (*table_functions[])(Child_Table*, Parent_Table*)={nullptr, add_parent_element, add_child_element, delete_element, show_parent_table, show_child_table, surprise};
 
 int main() {
     auto *parent_table=new Parent_Table;
@@ -62,7 +62,7 @@ int main() {
 
     int rc;
     while((rc=dialog(msgs, NMsgs)))
-        if(!ftpr[rc](child_table, parent_table))
+        if(!table_functions[rc](child_table, parent_table))
             break;
     printf("That's all. Bye!\n");
 
