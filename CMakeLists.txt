@@ -3,11 +3,13 @@ project(labs_cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(lab3.18a lab3.18a.cpp)
-add_executable(lab3.18b lab3.18b.cpp)
+add_executable(lab3.18a lab3/lab3.18a.cpp)
+add_executable(lab3.18b lab3/lab3.18b.cpp)
 
-add_executable(lab4.35a lab4.35a.cpp)
-add_executable(lab4.35b lab4.35b.cpp)
+add_executable(lab4.35a lab4/lab4.35a.cpp)
+add_executable(lab4.35b lab4/lab4.35b.cpp)
+
+add_executable(lab5.18 lab5/lab5.18.cpp)
 
 add_executable(test test.cpp)
 
