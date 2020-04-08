@@ -47,9 +47,6 @@ char *getStr();
 const char *msgs[] = {" 0. Quit", " 1. Add Parent Item", " 2. Add Child Item", " 3. Delete Item from Parent Table ",
                       " 4. Show Parent Table", " 5. Show Child Table"};
 
-const char *loading[]={" 0. Quit", " 1. Load Parent Table by file name or create new Parent Table",
-                       " 2. Load Child Table by file name or create new Child Table"};
-
 const int NMsgs = sizeof(msgs) / sizeof(msgs[0]);
 
 int dialog(const char *msgs[], int N);
@@ -58,29 +55,43 @@ int add_parent_element(Child_Table *, Parent_Table *), add_child_element(Child_T
         delete_element(Child_Table *, Parent_Table *), show_parent_table(Child_Table *, Parent_Table *),
         show_child_table(Child_Table *, Parent_Table *);
 
-int load_parent_table(Child_Table *, Parent_Table *), load_child_table(Child_Table *, Parent_Table *),
-        save_parent_table(Child_Table *, Parent_Table *), save_child_table(Child_Table *, Parent_Table *);
-
 int findByKey(Parent_Table *, int), findByKeyInChild(Child_Table *, int);
 
 int (*table_functions[])(Child_Table *, Parent_Table *) ={nullptr, add_parent_element, add_child_element,
                                                           delete_element, show_parent_table, show_child_table};
 
-int (*file_functions[])(Child_Table *, Parent_Table *) ={nullptr, load_parent_table, load_child_table};
-
 int main() {
-    auto *parent_table = new Parent_Table;
-    auto *child_table = new Child_Table;
-    FILE *child_info_file=nullptr, *child_table_file=nullptr;
+    auto *pTable = new Parent_Table;
+    auto *cTable = new Child_Table;
+    FILE *pi_file=nullptr, *pt_file=nullptr;
+//    FILE *ci_file=nullptr, *ct_file=nullptr;
 
-    int rc;
-    while ((rc = dialog(loading, NMsgs)))
-        if (!file_functions[rc](child_table, parent_table))
+    char pt_filename[] = R"(C:\Users\Mi\Downloads)" , pt_info_filename[50];          /* Имя файла и вспомогательная переменная */
+
+    int rc=0;
+
+    while(rc==0){
+        printf("1. Create a new files\n2. Open an existed files");
+        getNaturalInt(&rc);
+        if(rc==1){
+            rc=createTables(pTable, cTable);
+        }
+        if(rc==2){
+            rc==loadTables(pTable, cTable);
+        }
+    }
+
+
+    printf("\nEnter file name --> ");
+    scanf("%s", pt_info_filename);                                                                                  //Ввод имени файла
+    strcat(pt_filename, pt_info_filename);
+    pt_file = fopen(pt_filename, "rb+");                                                                                  //Попытка открытия чтения-записи для файла
+
+
+    while ((rc = dialog(msgs, NMsgs)))
+        if (!table_functions[rc](cTable, pTable))
             break;
-
-
     printf("That's all. Bye!\n");
-
 }
 
 
