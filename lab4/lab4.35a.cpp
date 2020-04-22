@@ -37,15 +37,11 @@ struct Parent_Table : Table {
         int n=SIZEP;
 };
 
+const char *msgs[] = {" 0. Quit", " 1. Add Parent Item", " 2. Add Child Item", " 3. Delete Item from Parent Table ", " 4. Show Parent Table", " 5. Show Child Table", " 6. Surprise"};
+const int NMsgs = sizeof(msgs) / sizeof(msgs[0]);
 int getNaturalInt(int *a);
 int hashFunction(int key, int table_type);
-
 char *getStr();
-
-const char *msgs[] = {" 0. Quit", " 1. Add Parent Item", " 2. Add Child Item", " 3. Delete Item from Parent Table ", " 4. Show Parent Table", " 5. Show Child Table", " 6. Surprise"};
-
-const int NMsgs = sizeof(msgs) / sizeof(msgs[0]);
-
 int dialog(const char *msgs[], int N);
 
 int add_parent_element(Child_Table*, Parent_Table *), add_child_element(Child_Table *, Parent_Table *ptable),

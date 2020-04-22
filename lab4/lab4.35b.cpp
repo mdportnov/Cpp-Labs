@@ -3,7 +3,7 @@
 #include "string"
 
 using namespace std;
-const int SIZEP = 10;
+const int SIZEP = 4;
 const int SIZEC = 4;
 
 // Перемешивание сцеплением - надо хранить информацию в двух файлах,
@@ -138,8 +138,6 @@ int load(Parent_Table *pTable, Child_Table *cTable, char *fname) {
     int len = strlen(fname);  // длина основной части имени файла
     pTable->fname = fname;
     cTable->fname = fname;
-//    strcpy(pTable->fname, fname);
-//    strcpy(cTable->fname, fname);
 
     FILE *fdc = nullptr;
     // имена файлов для ДОЧЕРНЕЙ таблицы
@@ -164,7 +162,7 @@ int load(Parent_Table *pTable, Child_Table *cTable, char *fname) {
     strcpy(ftname, pTable->fname);
     strcat(ftname, ".tab");
 
-    // открываем существующий файл РОДИТЕЛЬСКОЙ таблицы (со словами) для ЧТЕНИЯ как бинарный
+    // открываем существующий файл РОДИТЕЛЬСКОЙ/ДОЧЕРНЕЙ таблицы (со словами) для ЧТЕНИЯ как бинарный
     fopen_s(&fd, fdname, "rb");
     fopen_s(&fdc, fdcname, "rb");
 //    printf("New files: %s, %s & %s, %s was created\n\n", fdname, ftname, fdcname, ftcname);
@@ -281,9 +279,6 @@ int insertInParentTable(Child_Table *cTable, Parent_Table *pTable) {
     strcpy(ftname, pTable->fname);
     strcat(ftname, ".tab");
 
-    // Открыл файл для записи отступов
-    fopen_s(&(pTable->ft), ftname, "w+b");
-
     if (pTable->ft == nullptr) {
         printf("\nCan't open\n");
         return 0;
@@ -324,7 +319,6 @@ int insertInParentTable(Child_Table *cTable, Parent_Table *pTable) {
     fwrite(str, sizeof(char), item->size, fd);
 
     fclose(fd);
-    fclose(pTable->ft);
     return 1;
 }
 
@@ -492,8 +486,10 @@ int show_child_table(Child_Table *table, Parent_Table *) {
             }
             cout << endl;
         } else cout << "[" << i << "] " << "..." << endl;
-        cout<<"\n";
+
     }
+    cout<<"\n";
+
     return 1;
 }
 
@@ -651,8 +647,7 @@ char *findcInfo(Child_Table *cTable, int key){
 // Utils
 int dialog(const char *msgs[], int N) {
     string errmsg = "";
-    int rc, n;
-
+    int rc, n;    
     do {
         cout << errmsg;
         errmsg = "You are wrong. Repeat, please\n";

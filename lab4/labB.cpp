@@ -116,7 +116,7 @@ int load(Parent_Table *pTable, char *fname){
     fopen_s(&fd, fdname, "rb");
 
     // Если он существует, то работаем с ним
-    if((fd) != nullptr){ // считываем данные
+    if(fd != nullptr){ // считываем данные
         printf("Files have already created: %s & %s\n", fdname, ftname);
         // открываем файл с отступами на чтение и запись
 
@@ -290,7 +290,7 @@ int show_parent_table(Child_Table *, Parent_Table *table) {
             cout << endl;
         } else cout << "[" << i << "] " << "..." << endl;
     }
-
+    return 1;
 }
 
 int show_child_table(Child_Table *table, Parent_Table *){}

@@ -10,10 +10,8 @@ add_executable(lab4.35b lab4/lab4.35b.cpp)
 add_executable(labB lab4/labB.cpp)
 
 add_executable(lab5.18 lab5/lab5.18.cpp)
-
-add_executable(test test.cpp)
+add_executable(lab5rb lab5/lab5rb.cpp)
 
 add_executable(main main.cpp)
-add_executable(yan lab4/yan.cpp)
 
 
