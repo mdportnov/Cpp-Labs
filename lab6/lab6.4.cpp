@@ -72,6 +72,8 @@ int main() {
     printf("That's all. Bye!\n");
 }
 
+int fun1(){}
+
 int loadFromFile() {
     vertex* adjacent_list;
     adjacent_list->number = 4;
