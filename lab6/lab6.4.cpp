@@ -74,12 +74,13 @@ int main() {
 
 int loadFromFile() {
     vertex* adjacent_list;
-    adjacent_list->number = 3;
+    adjacent_list->number = 4;
     printf("Input file name:\n");
     char *fname = getStr();
     strcat(fname, ".txt");
     cout << "\n" << fname;
 
+    adjacent_list->number = 5;
     FILE *f = NULL;
     errno_t err = fopen_s(&f, fname, "r");
 
