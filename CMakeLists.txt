@@ -11,7 +11,3 @@ add_executable(labB lab4/labB.cpp)
 
 add_executable(lab5.18 lab5/lab5.18.cpp)
 add_executable(lab6.4 lab6/lab6.4.cpp)
-
-add_executable(main main.cpp)
-
-

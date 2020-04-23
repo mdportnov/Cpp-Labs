@@ -74,7 +74,7 @@ int main() {
 
 int loadFromFile() {
     vertex* adjacent_list;
-
+    adjacent_list->number = 3;
     printf("Input file name:\n");
     char *fname = getStr();
     strcat(fname, ".txt");
